@@ -9,13 +9,25 @@ function getMaxDigit(...number) {
     return Math.max(...newString);
 }
 
-function getPow(a, b) {
-    let result = a;
-    for (let i = 1; i < b; i++) {
-        result *= a;
+function getPow(number, pow) {
+    let powNumber = 1;
+    let result = number;
+    if (pow > 0) {
+        for (let i = 1; i < pow; i++) {
+            result *= number;
+        }
+    } else if (pow < 0) {
+        for (let i = 0; i < Math.abs(pow); i++) {
+             result = powNumber/= number;
+        }
+    } else {
+        result = powNumber;
     }
     return result;
 }
+console.log(getPow(5, 2))
+console.log(getPow(10, 0))
+console.log(getPow(5, -2))
 
 const getCorrectName = name => {
     return name[0].toUpperCase() + name.slice(1).toLowerCase();
