@@ -37,7 +37,7 @@ function getSumAfterTax(sum, tax = 19.5) {
             console.log("Ви ввели некоректний відсоток податку");
         };
     };
-    return sum - (sum * (tax / 100));
+    return +(sum - (sum * (tax / 100))).toFixed(2);
 }
 
 const getRandomNumber = (min, max) => {
