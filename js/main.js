@@ -105,9 +105,10 @@ function deleateLetters(letter, string) {
 }
 
 function isPalidrom(string) {
-    const reverse = (string) => string.split(",").reverse().join("")
+    string = deleateLetters(string, " ").toLowerCase();
+    const reverse = (string) => string.split("").reverse().join("");
     const reverseString = reverse(string);
-    return (reverseString.toLowerCase() === string.toLowerCase());
+    return (reverseString === string);
 }
 
 function deleteDuplicateLetter(string) {
