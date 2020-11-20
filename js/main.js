@@ -18,16 +18,13 @@ function getPow(number, pow) {
         }
     } else if (pow < 0) {
         for (let i = 0; i < Math.abs(pow); i++) {
-             result = powNumber/= number;
+            result = powNumber /= number;
         }
     } else {
         result = powNumber;
     }
     return result;
 }
-console.log(getPow(5, 2))
-console.log(getPow(10, 0))
-console.log(getPow(5, -2))
 
 const getCorrectName = name => {
     return name[0].toUpperCase() + name.slice(1).toLowerCase();
@@ -59,17 +56,30 @@ function getLetterRepeat(letter, word) {
 }
 
 function convertCurrency(currency) {
-    const selldollarCurrency = 28.35;
-    const buydollarCurrency = 28.15;
+    const sellDollarCurrency = 28.35;
+    const buyDollarCurrency = 28.15;
+    const checkCurrency = () => {
+        if (typeof (currency) !== "string") {
+            currency = prompt("Введіть, будь ласка, суму для обміну з знаком валюти $ або UAH");
+        }
+        currency = currency.toUpperCase();
+        do {
+            while (currency.includes("-")) {
+                currency = prompt("Ви ввели негативне значення. Введіть, будь ласка, суму для обміну з знаком валюти $ або UAH");
+            }
+            while (!currency.toUpperCase().includes("UAH") && !currency.includes("$")) {
+                currency = prompt("Введіть, будь ласка, суму для обміну з знаком валюти $ або UAH");
+            }
+        } while (currency.includes("-") || !currency)
+        return currency;
+    }
+    currency = checkCurrency();
     let sum = 0;
 
-    if (currency.toUpperCase().includes("$")) {
-        sum = +currency.split("$")[0] * selldollarCurrency;
-    } else if (currency.toUpperCase().includes("UAH")) {
-        sum = +currency.split("UAH")[0] * buydollarCurrency;
-    } else {
-        console.log("Ви ввели некоректне значення");
-        convertCurrency(currency = prompt("Некоректне значення. Введіть, будь ласка, суму для обміну з знаком валюти $ або UAH"));
+    if (currency.includes("$")) {
+        sum = +currency.split("$")[0] * sellDollarCurrency;
+    } else if (currency.includes("UAH")) {
+        sum = +currency.split("UAH")[0] * buyDollarCurrency;
     }
     return sum;
 }
